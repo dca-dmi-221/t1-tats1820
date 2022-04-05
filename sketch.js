@@ -1,12 +1,12 @@
- // adelantar y atrazar la línea de la canción 
-
- const OUTPUT = "HEAD"; // VOLUME | HEAD
-
+// adelantar y atrazar la línea de la canción 
+const OUTPUT = "HEAD"; // VOLUME | HEAD
 const WIDTH = 1538;
 const HEIGH = 713;
 
 let song;
-this.song;
+canciones = [];
+indice = 0;
+nombresCanciones=["cancion1","cancion2","cancion3","cancion4", "cancion5"]
 
 this.rectangle = {
   x: WIDTH/4,
@@ -21,23 +21,70 @@ this.bola = {
   r: 5
 }
 
-/*function preload() {
-  song = loadSound('Sonidos/Push It.mp3');
-}*/
+function preload() {
+  soundFormats('mp3');
+  canciones[0] = loadSound("Sonidos/a.mp3");
+  canciones[1] = loadSound("Sonidos/b.mp3");
+  canciones[2] = loadSound("Sonidos/c.mp3");
+  canciones[3] = loadSound("Sonidos/d.mp3");
+  canciones[4] = loadSound("Sonidos/e.mp3");
+}
 
 function setup() {
   fondo = loadImage('Imagenes/Home2.png');
-  //song = loadSound('Sonidos/Push It.mp3');
-  this.song = loadSound('Sonidos/PushIt.mp3', song => {
-    song.play()
-  });
-
-  //song.loop();
-  
+  background(fondo);
+  botonPlay=createButton("PLAY");
+  botonPlay.mousePressed(Play);
+  botonStop=createButton("STOP");
+  botonStop.mousePressed(Stop);
+  botonNext=createButton("NEXT");
+  botonNext.mousePressed(Next);
   createCanvas(WIDTH, HEIGH);
 }
 
 function draw() {
+background(fondo);
+//textSize(24);
+//text(nombresCanciones[indice],width/2,height/2);
+}
+
+function Play(){
+  canciones[indice].play();
+  console.log(nombresCanciones[indice]);
+}
+
+function Stop(){
+  canciones[indice].stop();
+}
+function Next(){
+  Stop();
+  if(indice<canciones.length-1){
+  indice+=1;
+  }
+  else{
+    indice=0;
+  }
+  Play();
+}
+
+
+/*function preload() {
+  song = loadSound('Sonidos/PushIt.mp3');
+}
+
+function setup() {
+  fondo = loadImage('Imagenes/Home2.png');
+  //song = loadSound('Sonidos/Push It.mp3');
+  /*this.song = loadSound('Sonidos/PushIt.mp3', song => {
+    song.play()
+    
+    //song.loop();
+    
+    createCanvas(WIDTH, HEIGH);
+    //}
+  });*/
+
+/*function draw() {
   background(fondo);
   //rectMode(CORNER);
   rect(this.rectangle.x,this.rectangle.y,this.rectangle.w,this.rectangle.h)
@@ -66,10 +113,11 @@ function mouseDragged(){
     }
   }
 }
+*/
 
 //para y continua la canción
 
-
+/*
 function mousePressed() {
   if (song.isPlaying()) {
     // .isPlaying() retorna una variable booleana
@@ -83,7 +131,7 @@ function mousePressed() {
   button.mouseClicked(x, y);
     //background(0, 255, 0); //verde
   }
-}
+}*/
 
 
 
@@ -160,4 +208,56 @@ function mousePressed() {
     background(0, 255, 0);
   }
 }
+
+//parar, continuar y cambiar cancion 
+
+canciones=[];
+indice=0;
+nombresCanciones=["cancion1","cancion2","cancion3","cancion4"]
+
+function preload() {
+  canciones[0] = loadSound("song1.mp3");
+  canciones[1] = loadSound("song2.mp3");
+  canciones[2] = loadSound("song3.mp3");
+  canciones[3] = loadSound("song4.mp3");
+}
+
+function setup() {
+  createCanvas(600, 200);
+  background("white");
+  botonPlay=createButton("PLAY");
+  botonPlay.mousePressed(Play);
+  botonStop=createButton("STOP");
+  botonStop.mousePressed(Stop);
+  botonNext=createButton("NEXT");
+  botonNext.mousePressed(Next);
+}
+
+function draw() {
+background("white");
+textSize(24);
+text(nombresCanciones[indice],width/2,height/2);
+}
+
+function Play(){
+  canciones[indice].play();
+  console.log(nombresCanciones[indice]);
+}
+
+function Stop(){
+  canciones[indice].stop();
+}
+function Next(){
+  Stop();
+  if(indice<canciones.length-1){
+  indice+=1;
+  }
+  else{
+    indice=0;
+  }
+  Play();
+}
+
+
+
 */
