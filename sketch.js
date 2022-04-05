@@ -1,48 +1,47 @@
-function setup() {
-  fondo = loadImage('Imagenes/Home2.png');
-  //createCanvas(1553, 1489);
-  createCanvas(1538, 713);
-}
-
-function draw() {
-  background(fondo);
-}
-
  // adelantar y atrazar la línea de la canción 
 
  const OUTPUT = "HEAD"; // VOLUME | HEAD
 
-const WIDTH = 400;
-const HEIGH = 400;
+const WIDTH = 1538;
+const HEIGH = 713;
 
+let song;
 this.song;
 
 this.rectangle = {
-  x: WIDTH/8,
-  y: HEIGH/2 - 5,
-  w: WIDTH/8 * 6,
-  h: 10
+  x: WIDTH/4,
+  y: HEIGH/2 +304,
+  w: WIDTH/4 * 2.4,
+  h: 2
 }
 
 this.bola = {
-  x: WIDTH/8,
-  y: HEIGH/2,
-  r: 15
+  x: WIDTH/4,
+  y: HEIGH/2 + 304,
+  r: 5
 }
 
+/*function preload() {
+  song = loadSound('Sonidos/Push It.mp3');
+}*/
+
 function setup() {
-  this.song = loadSound('lucky_dragons_-_power_melody.mp3', song => {
+  fondo = loadImage('Imagenes/Home2.png');
+  //song = loadSound('Sonidos/Push It.mp3');
+  this.song = loadSound('Sonidos/PushIt.mp3', song => {
     song.play()
   });
+
+  //song.loop();
   
   createCanvas(WIDTH, HEIGH);
 }
 
 function draw() {
-  background(0);
-  rectMode(CORNER);
+  background(fondo);
+  //rectMode(CORNER);
   rect(this.rectangle.x,this.rectangle.y,this.rectangle.w,this.rectangle.h)
-  ellipseMode(CENTER)
+  //ellipseMode(CENTER)
   ellipse(this.bola.x,this.bola.y,this.bola.r*2)
 }
 
@@ -68,6 +67,31 @@ function mouseDragged(){
   }
 }
 
+//para y continua la canción
+
+
+function mousePressed() {
+  if (song.isPlaying()) {
+    // .isPlaying() retorna una variable booleana
+    song.pause(); // .play() continuará la reproducción desde la posición definida por .pause()
+    button = createButton(mouseClicked);
+  button.mouseClicked(x, y);
+    //background(255, 0, 0); //rojo
+  } else {
+    song.play();
+    button = createButton(mouseClicked);
+  button.mouseClicked(x, y);
+    //background(0, 255, 0); //verde
+  }
+}
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
 //Cargar y reproducir un sonido
 
 let song;
@@ -136,4 +160,4 @@ function mousePressed() {
     background(0, 255, 0);
   }
 }
-
+*/
