@@ -2,7 +2,8 @@ const WIDTH = 1538;
 const HEIGH = 713;
 canciones=[];
 indice=0;
-//let song;
+let volumen;
+
 nombresCanciones=["cancion1","cancion2","cancion3","cancion4","cancion5"]
 
 this.rectangle = {
@@ -36,6 +37,9 @@ function setup() {
   botonNext=createButton("NEXT");
   botonNext.mousePressed(Next);
 }
+
+volumen = createSlider(0, 1, 0.5, 0.01);
+  volumen.position(1174, 640);
 
 function draw() {
 background(fondo);
