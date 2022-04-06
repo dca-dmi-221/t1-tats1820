@@ -71,15 +71,16 @@ function mouseDragged(){
     const isInRange = mouseX > bonderies.x1 && mouseX < bonderies.x2;
     if(isInRange){
       this.bola.x = mouseX;
-      
+      const head = map(mouseX, bonderies.x1,bonderies.x2, 0,canciones[indice].duration());
+      canciones[indice].jump(head)
+      /*
       if(OUTPUT === 'VOLUME') {
         const volume = map(mouseX, bonderies.x1,bonderies.x2, 0,100) / 100;
         this.song.setVolume(volume)
       } else if (OUTPUT === "HEAD") {
-        const head = map(mouseX, bonderies.x1,bonderies.x2, 0,this.song.duration());
-        this.song.jump(head)
+        
       }
-
+*/
     }
   }
 }
